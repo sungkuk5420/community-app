@@ -24,6 +24,20 @@ npm init quasar
 ctrl + , 눌러서 tab size 검색 2로설정
 ```
 
+### unplugin vue router
+```
+npm i -D unplugin-vue-router
+
+https://github.com/posva/unplugin-vue-router
+```
+
+### vite-plugin-vue-layouts
+```
+npm install -D vite-plugin-vue-layouts
+
+https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+```
+
 
 # community-app (community-app)
 
