@@ -1,5 +1,5 @@
 import { route } from 'quasar/wrappers'
-import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router/auto'
+import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router/auto' //auto 붙임
 import routes from './routes'
 
 /*
@@ -18,7 +18,7 @@ export default route(function (/* { store, ssrContext } */) {
 
   const Router = createRouter({
     scrollBehavior: () => ({ left: 0, top: 0 }),
-    // routes,
+    // routes, //주석처리
 
     // Leave this as is and make changes in quasar.conf.js instead!
     // quasar.conf.js -> build -> vueRouterMode

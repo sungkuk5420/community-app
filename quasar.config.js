@@ -80,9 +80,33 @@ module.exports = configure(function (/* ctx */) {
       // viteVuePluginOptions: {},
 
       
-      // vitePlugins: [
-      //   [ 'package-name', { ..options.. } ]
-      // ]
+      vitePlugins: [
+        [ 'unplugin-vue-router/vite', {
+          // Folder(s) to scan for vue components and generate routes. Can be a string, or
+          // an object, or an array of those. Each option allows to override global options.
+          // like exclude, extensions, etc.
+          routesFolder: [
+            {
+              src: 'src/pages'
+            },
+            {
+              src: 'src/docs',
+              path:'docs/'
+            },
+          ],
+        
+          // allowed extensions for components to be considered as pages
+          // can also be a suffix: e.g. `.page.vue` will match `home.page.vue`
+          // but remove it from the route path
+          extensions: ['.vue'],
+        
+          // list of glob files to exclude from the routes generation
+          // e.g. ['**/__*'] will exclude all files and folders starting with `__`
+          // e.g. ['**/__*/**/*'] will exclude all files within folders starting with `__`
+          // e.g. ['**/*.component.vue'] will exclude components ending with `.component.vue`
+          exclude: ["**/components/**"]
+        } ]
+      ]
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
