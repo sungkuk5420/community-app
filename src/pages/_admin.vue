@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="text-h4">about</div>
+<div class="text-h3">pages/admin</div>
+<router-view></router-view>
   </div>
 </template>
 
@@ -13,9 +14,9 @@
 </style>
 
 
+
 <route lang="json">
   {
-    "name": "name-override",
     "meta": {
       "layout": "admin"
     }

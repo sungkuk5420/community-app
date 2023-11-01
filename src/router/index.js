@@ -1,5 +1,7 @@
 import { route } from 'quasar/wrappers'
 import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router/auto' //auto 붙임
+import { setupLayouts } from 'virtual:generated-layouts'
+
 import routes from './routes'
 
 /*
@@ -19,11 +21,22 @@ export default route(function (/* { store, ssrContext } */) {
   const Router = createRouter({
     scrollBehavior: () => ({ left: 0, top: 0 }),
     // routes, //주석처리
-
-    // Leave this as is and make changes in quasar.conf.js instead!
-    // quasar.conf.js -> build -> vueRouterMode
-    // quasar.conf.js -> build -> publicPath
-    history: createHistory(process.env.VUE_ROUTER_BASE)
+    history: createHistory(process.env.VUE_ROUTER_BASE),
+    extendRoutes: (routes) => {
+      return setupLayouts(routes.map(route=>{
+        if(route.path.includes('admin')){
+          route = {
+            ...route,
+            meta:{
+              ...route.meta,
+              layout:'admin'
+            }
+          }
+        }
+        return route;
+      })
+      )
+    },
   })
 
   return Router

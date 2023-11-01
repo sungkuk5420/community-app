@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-h4">about</div>
+    <div class="text-h4">admin / dashboard</div>
   </div>
 </template>
 
@@ -12,12 +12,11 @@
 
 </style>
 
-
+<!-- 
 <route lang="json">
   {
-    "name": "name-override",
     "meta": {
       "layout": "admin"
     }
   }
-  </route>
+  </route> -->
