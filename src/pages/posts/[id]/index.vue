@@ -1,18 +1,21 @@
 <template>
-  <div>
-    <div class="text-h4">커뮤니티 상세</div>
-    <ul>
-      <li>
-        <router-link to="/posts/1/edit">수정으로 이동</router-link>
-      </li>
-    </ul>
-  </div>
+  <q-page padding>
+    <PostDetails></PostDetails>
+    <q-separator class="q-my-xl"></q-separator>
+    <PostComment></PostComment>
+  </q-page>
 </template>
 
 <script setup>
-
+import PostDetails from "./components/PostDetails.vue";
+import PostComment from "./components/PostComment.vue";
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
+<route lang="json">
+{
+  "meta": {
+    "width": "800px"
+  }
+}
+</route>
