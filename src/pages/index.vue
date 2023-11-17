@@ -1,14 +1,23 @@
 <template>
   <q-page padding>
-    <div class="text-h4">커뮤니티 목록</div>
-    <section class="q-gutter-y-sm q-mt-lg">
-      <PostList :items="posts"></PostList>
-    </section>
+    <div class="row q-col-gutter-x-lg">
+      <PostLeftBar></PostLeftBar>
+
+      <section class="col-7">
+        <PostHeader></PostHeader>
+        <PostList :items="posts"></PostList>
+      </section>
+      <PostRightBar></PostRightBar>
+    </div>
   </q-page>
 </template>
 
 <script setup>
 import PostList from "src/components/apps/posts/PostList.vue";
+import PostHeader from "./components/PostHeader.vue";
+import PostLeftBar from "./components/PostLeftBar.vue";
+import PostRightBar from "./components/PostRightBar.vue";
+
 const posts = Array.from(Array(20), (_, index) => {
   return {
     id: index,
