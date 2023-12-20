@@ -1,5 +1,5 @@
 <template>
-  <PostList :items="posts"> </PostList>
+  <PostList :items="postsZ"> </PostList>
 </template>
 
 <script setup>
