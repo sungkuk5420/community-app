@@ -46,7 +46,12 @@
         ></q-btn>
         <q-btn round flat v-if="authStore.isAuthenticated">
           <q-avatar>
-            <img :src="authStore.user.photoURL" />
+            <img
+              :src="
+                authStore.user.photoURL ||
+                gernerateDefaultPhotoURL(authStore.user.uid)
+              "
+            />
           </q-avatar>
           <q-menu>
             <q-list style="min-width: 100px">
@@ -74,7 +79,7 @@ import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import AuthDialog from "src/components/auth/AuthDialog.vue";
 import { useAuthStore } from "src/stores/auth";
-import { logout } from "src/service/auth";
+import { logout, gernerateDefaultPhotoURL } from "src/service";
 const route = useRoute();
 
 const authStore = useAuthStore();

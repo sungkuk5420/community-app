@@ -1,11 +1,23 @@
 <template>
   <div>
     <div class="text-h5 text-center text-weight-bold q-mb-xl">로그인</div>
-    <q-form class="q-gutter-y-md">
-      <q-input placeholder="이메일" outlined dense></q-input>
-      <q-input placeholder="비밀번호" outlined dense></q-input>
+    <q-form class="q-gutter-y-md" @submit.prevent="handleSignInEmail">
+      <q-input
+        v-model="form.email"
+        placeholder="이메일"
+        outlined
+        dense
+      ></q-input>
+      <q-input
+        type="password"
+        v-model="form.password"
+        placeholder="비밀번호"
+        outlined
+        dense
+      ></q-input>
       <div>
         <q-btn
+          type="submit"
           label="로그인하기"
           class="full-width"
           unelevated
@@ -45,9 +57,25 @@
 
 <script setup>
 import { signInWithGoogle } from "src/service/auth";
-defineEmits(["changeView"]);
+import { ref } from "vue";
+import { signInWithEmail } from "src/service";
+import { useQuasar } from "quasar";
+const emit = defineEmits(["changeView", "closeDialog"]);
+const $q = useQuasar();
+const form = ref({
+  email: "",
+  password: "",
+});
+
+const handleSignInEmail = async () => {
+  await signInWithEmail(form.value);
+  $q.notify("환영합니다.");
+  emit("closeDialog");
+};
 const handleSignInGoogle = async () => {
   await signInWithGoogle();
+  $q.notify("환영합니다.");
+  emit("closeDialog");
 };
 </script>
 

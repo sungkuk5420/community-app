@@ -1,8 +1,18 @@
-import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "src/boot/firebase";
-export function signInWithGoogle() {
+
+const DEFAULT_PHOTO_URL =
+  "https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=";
+export async function signInWithGoogle() {
   const provider = new GoogleAuthProvider();
-  signInWithPopup(auth, provider)
+  await signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -32,5 +42,42 @@ export function logout() {
     })
     .catch((error) => {
       // An error happened.
+    });
+}
+
+export function signUpWithEmail({ email, password, nickname }) {
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      updateProfile(user, {
+        displayName: nickname,
+        photoURL: gernerateDefaultPhotoURL(user.uid),
+      });
+      console.log(user);
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
+}
+
+export function gernerateDefaultPhotoURL(uid) {
+  return `${DEFAULT_PHOTO_URL}${uid}`;
+}
+
+export function signInWithEmail({ email, password }) {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log(user);
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
     });
 }
