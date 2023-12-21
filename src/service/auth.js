@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "src/boot/firebase";
 
@@ -80,4 +81,8 @@ export function signInWithEmail({ email, password }) {
       const errorCode = error.code;
       const errorMessage = error.message;
     });
+}
+
+export async function sendPasswordReset(email) {
+  await sendPasswordResetEmail(auth, email);
 }
