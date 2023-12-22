@@ -57,6 +57,7 @@ const handleSubmit = async () => {
   await signUpWithEmail(form.value);
 
   $q.notify("회원가입을 환영합니다.");
+  $q.notify("이메일에서 인증 링크를 확인 해주세요.");
   emit("closeDialog");
 };
 </script>

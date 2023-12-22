@@ -8,6 +8,7 @@ import {
   sendPasswordResetEmail,
   updatePassword,
   getAuth,
+  sendEmailVerification,
 } from "firebase/auth";
 import { auth } from "src/boot/firebase";
 
@@ -57,6 +58,7 @@ export function signUpWithEmail({ email, password, nickname }) {
         displayName: nickname,
         photoURL: gernerateDefaultPhotoURL(user.uid),
       });
+      sendEmailVerification();
       console.log(user);
       // ...
     })
@@ -91,4 +93,8 @@ export async function sendPasswordReset(email) {
 
 export async function updateUserPassword(newPassword) {
   await updatePassword(auth.currentUser, newPassword);
+}
+
+export async function sendVerificationEmail() {
+  await sendEmailVerification(auth.currentUser);
 }
