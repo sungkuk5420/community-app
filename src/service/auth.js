@@ -9,6 +9,7 @@ import {
   updatePassword,
   getAuth,
   sendEmailVerification,
+  updateEmail,
 } from "firebase/auth";
 import { auth } from "src/boot/firebase";
 
@@ -97,4 +98,14 @@ export async function updateUserPassword(newPassword) {
 
 export async function sendVerificationEmail() {
   await sendEmailVerification(auth.currentUser);
+}
+
+export async function updateUserProfile(displayName) {
+  await updateProfile(auth.currentUser, {
+    displayName,
+  });
+}
+
+export async function updateUserEmail(email) {
+  await updateEmail(auth.currentUser, email);
 }
